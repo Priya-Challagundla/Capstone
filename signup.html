@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            background : url("https://wallpapercave.com/wp/wp2135205.jpg");
+            background-repeat: no-repeat;
+            background-size: cover ;
+            background-attachment: fixed;
+            height: 100vh;
+            align-items: center;
+            padding: 150px;
+        }
+        #center{
+            background: radial-gradient(rgb(232, 230, 221),rgb(198, 108, 144));;
+            width: 500px;
+            margin: auto;
+            padding: 10px;
+            border-radius: 20px;
+            padding: 20px;
+        }
+        .header{
+            text-align: center;
+            margin: 15px;
+            padding-top: 20px;
+        }
+        label{
+            font-size: 20px;
+            display: block;
+            margin-bottom: 10px;
+            margin-top: 30px;
+        }
+        input[type="email"], input[type="password"],input[type="text"]{
+            height: 30px;
+            width: 400px;
+            padding: 0 10px;
+            font-size: 18px;
+            border: 2px solid ;
+        }
+        
+    button{
+     background-color: purple; 
+    color:white;
+    margin: 45px 0 30px 0; 
+    height: 45px; 
+    border-radius: 10px;
+    width: 420px; 
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    }
+    button:hover{ 
+    background: plum;
+    color: purple;
+    }
+    </style>
+
+  </head>
+<body>
+    <div id="center">
+    <form class="form"  name="form" method="post" action="/signupSubmit">
+        <h1 class="header">SignUp</h1>
+
+        <label for="text">FullName : </label><br>
+        <input type="text" id="FullName" name="FullName" required><br>
+
+        <label for="email">Email ID : </label><br>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="password">Password : </label><br>
+        <input type="password" id="password" name="password" required><br>
+
+        <button type="submit" >Submit</button>
+    </form>
+    </div>
+</body>
+</html>
