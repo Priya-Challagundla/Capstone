@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Article Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/129325364/original/afaddcb9d7dfaaf5bff7ef04101935814665ac16/design-an-attractive-background-for-your-website.png");
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+        font-size: 80px;
+        color: #fff;
+        text-align: center;
+        animation: glow 1s ease-in-out infinite alternate;
+      
+        }
+        @-webkit-keyframes glow {
+          from {
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px rgb(29, 5, 38), 0 0 40px #231b22, 0 0 50px #87b3d4, 0 0 60px #cc0ce1, 0 0 70px #8d23cb;
+          }
+          
+          to {
+            text-shadow: 0 0 20px #fff, 0 0 30px #830c12, 0 0 40px #102219, 0 0 50px #29a9ba, 0 0 60px #a31abe, 0 0 70px #44a3b0, 0 0 80px #1c5183;
+          }
+        }
+        #searchForm {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        #searchInput{
+            padding: 10px;
+            width: 300px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        #searchResults {
+            margin: 0 auto;
+            width: 80%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+
+        #searchResults p {
+            font-size: 18px;
+            margin: 0;
+            color: #333;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Article Search</h1>
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Enter article title">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+    <div id="searchResults"></div>
+
+    
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+            
+            const searchInput = document.getElementById('searchInput').value;
+            const searchResults = document.getElementById('searchResults');
+
+            // Replace 'YOUR_API_KEY' with your actual API key and adjust the API endpoint
+            const apiUrl = `http://api.mediastack.com/v1/news?access_key=0c3b8f86746a829a58f4d222e20f9e3a&title=${searchInput}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    searchResults.innerHTML = ''; // Clear previous results
+
+                    data.data.forEach(article => {
+                        const articleDiv = document.createElement('div');
+                        articleDiv.classList.add('article');
+                        articleDiv.innerHTML = `
+                            <h2>${article.title}</h2>
+                            <p>${article.description}</p>
+                            <a href="${article.url}" target="_blank">Read More</a>
+                        `;
+                        searchResults.appendChild(articleDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching articles:', error);
+                    searchResults.innerHTML = 'An error occurred while fetching articles.';
+                });
+        });
+    </script>
+</body>
+</html>
